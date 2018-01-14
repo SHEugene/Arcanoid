@@ -161,6 +161,7 @@ namespace arkanoid {
 			this->Controls->Add(this->newGame);
 			this->MaximizeBox = false;
 			this->Name = L"Form1";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Арканоид";
 			this->ResumeLayout(false);
 			this->PerformLayout();

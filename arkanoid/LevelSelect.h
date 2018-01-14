@@ -5,6 +5,9 @@
 #include <string>
 #include <fstream>
 #include <list>
+#include "Field.h"
+#include "Bat.h"
+#include "Ball.h"
 using namespace std;
 
 namespace arkanoid {
@@ -22,6 +25,8 @@ namespace arkanoid {
 	/// </summary>
 	public ref class LevelSelect : public System::Windows::Forms::Form
 	{
+	private:
+	//	Form1^ mainForm;
 	public:
 		LevelSelect (void)
 		{
@@ -30,6 +35,15 @@ namespace arkanoid {
 			//TODO: добавьте код конструктора
 			//
 		}
+
+	/*	LevelSelect (Form1^ form)
+		{
+			InitializeComponent();
+			//
+			//TODO: добавьте код конструктора
+			//
+			mainForm = form;
+		}*/
   
 
 	protected:
@@ -58,19 +72,30 @@ namespace arkanoid {
 	private: System::Windows::Forms::PictureBox^  pictureBox2;
 	private: System::Windows::Forms::PictureBox^  pictureBox3;
 	private: System::Windows::Forms::Label^  manu;
+	private: System::Windows::Forms::Label^  lTime;
 
-	private: System::Windows::Forms::Label^  label1;
+
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::Label^  save;
 
 	private: System::Windows::Forms::Label^  label4;
+	private: System::Windows::Forms::Label^  pause;
+	private: System::Windows::Forms::Label^  lPause;
+	private: System::Windows::Forms::Timer^  gameTime;
+	private: System::ComponentModel::IContainer^  components;
+
+
+
+
+
+
 	protected: 
 
 	private:
 		/// <summary>
 		/// Требуется переменная конструктора.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -79,6 +104,7 @@ namespace arkanoid {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(LevelSelect::typeid));
 			this->field = (gcnew System::Windows::Forms::PictureBox());
 			this->level = (gcnew System::Windows::Forms::Label());
@@ -89,10 +115,13 @@ namespace arkanoid {
 			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox3 = (gcnew System::Windows::Forms::PictureBox());
 			this->manu = (gcnew System::Windows::Forms::Label());
-			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->lTime = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->save = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->pause = (gcnew System::Windows::Forms::Label());
+			this->lPause = (gcnew System::Windows::Forms::Label());
+			this->gameTime = (gcnew System::Windows::Forms::Timer(this->components));
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->field))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pLeft))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pRight))->BeginInit();
@@ -199,41 +228,42 @@ namespace arkanoid {
 			// 
 			this->manu->AutoSize = true;
 			this->manu->BackColor = System::Drawing::Color::Transparent;
-			this->manu->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
+			this->manu->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(204)));
 			this->manu->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)), 
 				static_cast<System::Int32>(static_cast<System::Byte>(128)));
-			this->manu->Location = System::Drawing::Point(3, 10);
+			this->manu->Location = System::Drawing::Point(2, 11);
 			this->manu->Name = L"manu";
-			this->manu->Size = System::Drawing::Size(93, 30);
+			this->manu->Size = System::Drawing::Size(85, 27);
 			this->manu->TabIndex = 10;
 			this->manu->Text = L"В меню";
+			this->manu->Click += gcnew System::EventHandler(this, &LevelSelect::manu_Click);
 			this->manu->MouseLeave += gcnew System::EventHandler(this, &LevelSelect::manu_MouseLeave);
 			this->manu->MouseHover += gcnew System::EventHandler(this, &LevelSelect::manu_MouseHover);
 			// 
-			// label1
+			// lTime
 			// 
-			this->label1->AutoSize = true;
-			this->label1->BackColor = System::Drawing::Color::Transparent;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
+			this->lTime->AutoSize = true;
+			this->lTime->BackColor = System::Drawing::Color::Transparent;
+			this->lTime->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(204)));
-			this->label1->ForeColor = System::Drawing::Color::White;
-			this->label1->Location = System::Drawing::Point(437, 5);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(93, 38);
-			this->label1->TabIndex = 11;
-			this->label1->Text = L"00:00";
+			this->lTime->ForeColor = System::Drawing::Color::White;
+			this->lTime->Location = System::Drawing::Point(437, 5);
+			this->lTime->Name = L"lTime";
+			this->lTime->Size = System::Drawing::Size(93, 38);
+			this->lTime->TabIndex = 11;
+			this->lTime->Text = L"00:00";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
 			this->label2->BackColor = System::Drawing::Color::Transparent;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
+			this->label2->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(204)));
 			this->label2->ForeColor = System::Drawing::Color::White;
-			this->label2->Location = System::Drawing::Point(257, 11);
+			this->label2->Location = System::Drawing::Point(292, 11);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(68, 30);
+			this->label2->Size = System::Drawing::Size(62, 27);
 			this->label2->TabIndex = 12;
 			this->label2->Text = L"Счет:";
 			// 
@@ -241,15 +271,16 @@ namespace arkanoid {
 			// 
 			this->save->AutoSize = true;
 			this->save->BackColor = System::Drawing::Color::Transparent;
-			this->save->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
+			this->save->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(204)));
 			this->save->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)), 
 				static_cast<System::Int32>(static_cast<System::Byte>(128)));
-			this->save->Location = System::Drawing::Point(117, 10);
+			this->save->Location = System::Drawing::Point(93, 11);
 			this->save->Name = L"save";
-			this->save->Size = System::Drawing::Size(118, 30);
+			this->save->Size = System::Drawing::Size(108, 27);
 			this->save->TabIndex = 13;
-			this->save->Text = L"Сохнарить";
+			this->save->Text = L"Сохранить";
+			this->save->Click += gcnew System::EventHandler(this, &LevelSelect::save_Click);
 			this->save->MouseEnter += gcnew System::EventHandler(this, &LevelSelect::save_MouseEnter);
 			this->save->MouseLeave += gcnew System::EventHandler(this, &LevelSelect::save_MouseLeave);
 			// 
@@ -261,11 +292,47 @@ namespace arkanoid {
 				static_cast<System::Byte>(204)));
 			this->label4->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(192)), 
 				static_cast<System::Int32>(static_cast<System::Byte>(128)));
-			this->label4->Location = System::Drawing::Point(321, 5);
+			this->label4->Location = System::Drawing::Point(348, 5);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(81, 38);
 			this->label4->TabIndex = 14;
 			this->label4->Text = L"0000";
+			// 
+			// pause
+			// 
+			this->pause->AutoSize = true;
+			this->pause->BackColor = System::Drawing::Color::Transparent;
+			this->pause->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(204)));
+			this->pause->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)), 
+				static_cast<System::Int32>(static_cast<System::Byte>(128)));
+			this->pause->Location = System::Drawing::Point(207, 11);
+			this->pause->Name = L"pause";
+			this->pause->Size = System::Drawing::Size(70, 27);
+			this->pause->TabIndex = 15;
+			this->pause->Text = L"Пауза";
+			this->pause->Click += gcnew System::EventHandler(this, &LevelSelect::pause_Click);
+			this->pause->MouseEnter += gcnew System::EventHandler(this, &LevelSelect::pause_MouseEnter);
+			this->pause->MouseLeave += gcnew System::EventHandler(this, &LevelSelect::pause_MouseLeave);
+			// 
+			// lPause
+			// 
+			this->lPause->BackColor = System::Drawing::Color::Transparent;
+			this->lPause->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(204)));
+			this->lPause->ForeColor = System::Drawing::Color::Navy;
+			this->lPause->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"lPause.Image")));
+			this->lPause->Location = System::Drawing::Point(100, 347);
+			this->lPause->Name = L"lPause";
+			this->lPause->Size = System::Drawing::Size(329, 114);
+			this->lPause->TabIndex = 16;
+			this->lPause->Text = L"----- Пауза ----- Если Вы готовы - нажмите пробелл";
+			this->lPause->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// gameTime
+			// 
+			this->gameTime->Interval = 1000;
+			this->gameTime->Tick += gcnew System::EventHandler(this, &LevelSelect::gameTime_Tick);
 			// 
 			// LevelSelect
 			// 
@@ -273,10 +340,12 @@ namespace arkanoid {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(529, 504);
+			this->Controls->Add(this->lPause);
+			this->Controls->Add(this->pause);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->save);
 			this->Controls->Add(this->label2);
-			this->Controls->Add(this->label1);
+			this->Controls->Add(this->lTime);
 			this->Controls->Add(this->manu);
 			this->Controls->Add(this->pictureBox3);
 			this->Controls->Add(this->pictureBox2);
@@ -286,9 +355,13 @@ namespace arkanoid {
 			this->Controls->Add(this->start);
 			this->Controls->Add(this->level);
 			this->Controls->Add(this->field);
+			this->MaximizeBox = false;
 			this->Name = L"LevelSelect";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Выбор уровня";
 			this->Load += gcnew System::EventHandler(this, &LevelSelect::LevelSelect_Load);
+			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &LevelSelect::LevelSelect_KeyDown);
+			this->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &LevelSelect::LevelSelect_KeyPress);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->field))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pLeft))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pRight))->EndInit();
@@ -302,138 +375,209 @@ namespace arkanoid {
 #pragma endregion
 #define LEVELS 5
 #define COLUMNS 13
-#define ROWS 30
 	private:
 
-	int levelN;
-	int rows;
-	vector<string>** levels; //массив векторов строк
+	int levelN, rows;
+	int gTime;
+	
+	Field* levels; //массив полей
 	array<PictureBox^>^ pictureBoxs;
+	bool onGame, isPlaying;
+		
+	Bat* bat;
+	Ball* ball;
+	PictureBox^ batPict;
+	PictureBox^ ballPict;
 
-	void drawField(int number)
-	{
-		if (number <= LEVELS)
-		{
-			number--;
-			vector<string>* level = levels[number];
-			rows = level->size();
-			int x = 0;
-			int y = 0;
-			pictureBoxs = gcnew array<PictureBox^>(rows*COLUMNS);
-			for (int i = 0; i < rows; i++)
-			{
-				string a = (*level)[i];
-				for (int j = 0; j < COLUMNS; j++)
-				{	
-					pictureBoxs[i*COLUMNS+j] = gcnew PictureBox;
-					pictureBoxs[i*COLUMNS+j]->Location = Point(x, y);
-					pictureBoxs[i*COLUMNS+j]->Width = 38;
-					pictureBoxs[i*COLUMNS+j]->Height = 15;
-					
-					switch (a[j])
-					{
-					case '0':						
-						pictureBoxs[i*COLUMNS+j]->BackColor = Color::Transparent;
-						break;
-					case 'R':
-						pictureBoxs[i*COLUMNS+j]->Image = Image::FromFile("Images/R.png");
-						break;
-					case 'G':
-						pictureBoxs[i*COLUMNS+j]->Image = Image::FromFile("Images/G.png");
-						break;
-					case 'B':
-						pictureBoxs[i*COLUMNS+j]->Image = Image::FromFile("Images/B.png");
-						break;
-					case 'Y':
-						pictureBoxs[i*COLUMNS+j]->Image = Image::FromFile("Images/Y.png");
-						break;
-					case 'A':
-						pictureBoxs[i*COLUMNS+j]->Image = Image::FromFile("Images/A.png");
-						break;
-					case 'O':
-						pictureBoxs[i*COLUMNS+j]->Image = Image::FromFile("Images/O.png");
-						break;
-					default:
-						break;
-					}
-					field->Controls->Add(pictureBoxs[i*COLUMNS+j]);
-					x+= 38;
-				}
-				y += 15;
-				x = 0;
-			}	
-		}
-	}
+	void initBat();
+	void initBall();
+	void drawField(int number);
+	void moveObject(int x, int y, PictureBox^ pb);
+
+
+	//инициализация компонентов при загрузке формы
 	System::Void LevelSelect_Load(System::Object^  sender, System::EventArgs^  e) 
 	{
+		gTime = 0;
+		lPause->Visible = false;
+		isPlaying = false;
+		onGame = false;
 		rows = 0;
 		levelN = 1;
-		levels = new vector<string>*[LEVELS];
-		ifstream fin;
-		string temp = "";
+		levels = new Field[LEVELS];
 		//загрузка уровней из файла
 		for(int i = 1; i <= LEVELS; i++)
 		{
-			levels[i-1] = new vector<string>;
 			char num[3];
 			itoa(i,num,10);
 			string fName = num;	
-			fin.open("levels/"+fName+".txt");
-			while (!fin.eof())
-			{
-				fin >> temp;
-				levels[i-1]->push_back(temp);
-			}
-			fin.close();
+			levels[i-1].createFromFile("levels/"+fName+".txt");	
 		}
 		drawField(1);
 		pLeft->Visible = false;
 	}
-	private: System::Void pLeft_Click(System::Object^  sender, System::EventArgs^  e) 
-			 {
-				 for (int i = 0; i < rows*COLUMNS; i++) delete pictureBoxs[i];
-				 levelN--;
-				 drawField(levelN);
-				 if (levelN <= 1) pLeft->Visible = false;
-				 pRight->Visible = true;
-				 level->Text = "Уровень "+System::Convert::ToInt32(levelN);
-			 }
-private: System::Void pRight_Click(System::Object^  sender, System::EventArgs^  e) 
+
+//выбор уровня закончен - пора перейти к игре
+System::Void start_Click(System::Object^  sender, System::EventArgs^  e)
+{
+	//начать игру и инициализировать компоненты
+	onGame = true;
+	gTime = 0;
+	initBat();
+	initBall();
+	this->Text = level->Text;
+	lPause->Visible = true;
+	//скрыть ненужные элементы управления
+	pLeft->Visible = false;
+	pRight->Visible = false;
+	level->Visible = false;
+	start->Visible = false;	
+}
+
+//отображение времени от начала игры
+System::Void gameTime_Tick(System::Object^  sender, System::EventArgs^  e)
+{
+	gTime++;
+	int minutes = gTime/60;
+	int seconds = gTime%60;
+	lTime->Text =  ((minutes < 10) ? "0" : "")+System::Convert::ToString(minutes)+":"+((seconds < 10) ? "0" : "")+System::Convert::ToString(seconds);
+}
+
+//Возврат назад в главное меню
+System::Void manu_Click(System::Object^  sender, System::EventArgs^  e)
+{
+
+}
+
+//сохранение игры
+System::Void save_Click(System::Object^  sender, System::EventArgs^  e)
+{
+	if (onGame)
+	{
+		 //ставим на паузу
+		 lPause->Visible = true;	
+		 isPlaying = false;
+		 gameTime->Enabled = false;
+		 //спашиваем подтверждение
+		 System::Windows::Forms::DialogResult result;		
+		 result = MessageBox::Show(this, "Сохранить текущую игру?", "Сохранение игры", MessageBoxButtons::YesNo, MessageBoxIcon::Question);
+         if (result == System::Windows::Forms::DialogResult::Yes)
 		 {
-			 for (int i = 0; i < rows*COLUMNS; i++) delete pictureBoxs[i];
-			 levelN++;
-			 drawField(levelN);
-			 if (levelN >= LEVELS) pRight->Visible = false;
-			 pLeft->Visible = true;
-			 level->Text = "Уровень "+System::Convert::ToInt32(levelN);
-		 }
+//TO DO: сохранить положение ракетки, шара, таймера и очки
+			 levels[levelN-1].save(); //если да - то сохраняем
+		 }		 
+	}
+}
 
-private: System::Void start_MouseEnter(System::Object^  sender, System::EventArgs^  e) {
-			Color color = Color::FromName("Fuchsia");
-			start->ForeColor = color; 
-		 }
-private: System::Void start_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
+//нажатие паузы - остановить или продолжить игру
+System::Void pause_Click(System::Object^  sender, System::EventArgs^  e)
+{
+	if (onGame)
+	{
+		lPause->Visible = !lPause->Visible;
+		isPlaying = !isPlaying;
+		gameTime->Enabled = !gameTime->Enabled;
+	}
+}
 
-private: System::Void start_MouseLeave(System::Object^  sender, System::EventArgs^  e) {
-			Color color = Color::FromName("Purple");
-			start->ForeColor = color; 
-		 }
-private: System::Void manu_MouseHover(System::Object^  sender, System::EventArgs^  e) {
-			 Color color = Color::FromName("Gold");
-			 manu->ForeColor = color;
-		 }
-private: System::Void manu_MouseLeave(System::Object^  sender, System::EventArgs^  e) {
-			Color color = Color::FromArgb(255, 255, 128);
-			manu->ForeColor = color;
-		 }
-private: System::Void save_MouseEnter(System::Object^  sender, System::EventArgs^  e) {
-			 Color color = Color::FromName("Gold");
-			 save->ForeColor = color;
-		 }
-private: System::Void save_MouseLeave(System::Object^  sender, System::EventArgs^  e) {
-			Color color = Color::FromArgb(255, 255, 128);
-			save->ForeColor = color;
-		 }
+//обработчик события при нажатия на определенные клавиши
+System::Void LevelSelect_KeyDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e)
+{
+	switch (e->KeyCode)
+	{
+	//пробелл - остановить или продолжить игру
+	case Keys::Space:
+		isPlaying = !isPlaying;
+		lPause->Visible = !lPause->Visible;
+		gameTime->Enabled = !gameTime->Enabled;
+		break;
+	//стрелка влево - если не нажата пауза - передвинуть ракетку влево
+	case Keys::Left:
+		if (isPlaying) 
+		{
+			bat->moveLeft();			
+			moveObject(bat->batX(), bat->batY(), batPict); //прорисовать в новом месте
+		}
+		break;
+	//стрелка вправо - если не нажата пауза - передвинуть ракетку вправо
+	case Keys::Right:
+			if (isPlaying) 
+			{
+				bat->moveRight();			
+				moveObject(bat->batX(), bat->batY(), batPict); //прорисовать в новом месте
+			}
+			break;
+	default:
+			break;
+	}
+}
+
+//прелистывание уровней влево
+System::Void pLeft_Click(System::Object^  sender, System::EventArgs^  e) 
+{
+	//удаляем отраженные ранее пикчерБоксы
+	for (int i = 0; i < rows*COLUMNS; i++) delete pictureBoxs[i];
+	levelN--;
+	drawField(levelN); //рисуем новые
+	if (levelN <= 1) pLeft->Visible = false;
+	pRight->Visible = true;
+	level->Text = "Уровень "+System::Convert::ToInt32(levelN);
+}
+
+//прелистывание уровней вправо
+System::Void pRight_Click(System::Object^  sender, System::EventArgs^  e) 
+{
+	//удаляем отраженные ранее пикчерБоксы
+	for (int i = 0; i < rows*COLUMNS; i++) delete pictureBoxs[i];
+	levelN++; 
+	drawField(levelN); //рисуем новые
+	if (levelN >= LEVELS) pRight->Visible = false;
+	pLeft->Visible = true;
+	level->Text = "Уровень "+System::Convert::ToInt32(levelN);
+}
+
+//функции отвечают за смену цвета элемента управления при наведении мыши.
+System::Void start_MouseEnter(System::Object^  sender, System::EventArgs^  e)
+{
+	start->ForeColor = Color::FromName("Fuchsia");
+}
+
+System::Void start_MouseLeave(System::Object^  sender, System::EventArgs^  e)
+{
+	start->ForeColor = Color::FromName("Purple"); 
+}
+
+System::Void manu_MouseHover(System::Object^  sender, System::EventArgs^  e)
+{
+	manu->ForeColor = Color::FromName("Gold");
+}
+
+System::Void manu_MouseLeave(System::Object^  sender, System::EventArgs^  e)
+{
+	manu->ForeColor = Color::FromArgb(255, 255, 128);
+}
+
+System::Void save_MouseEnter(System::Object^  sender, System::EventArgs^  e) 
+{
+	save->ForeColor = Color::FromName("Gold");
+}
+
+System::Void save_MouseLeave(System::Object^  sender, System::EventArgs^  e)
+{
+	save->ForeColor = Color::FromArgb(255, 255, 128);
+}
+
+System::Void pause_MouseEnter(System::Object^  sender, System::EventArgs^  e) 
+{
+	pause->ForeColor = Color::FromName("Gold");
+}
+
+System::Void pause_MouseLeave(System::Object^  sender, System::EventArgs^  e)
+{
+	pause->ForeColor = Color::FromArgb(255, 255, 128);
+}
+
+System::Void LevelSelect_KeyPress(System::Object^  sender, System::Windows::Forms::KeyPressEventArgs^  e){}
+
 };
 }

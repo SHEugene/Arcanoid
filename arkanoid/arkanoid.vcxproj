@@ -89,7 +89,7 @@
     <ClCompile Include="arkanoid.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="Ball.cpp" />
-    <ClCompile Include="Blocks.cpp" />
+    <ClCompile Include="Bat.cpp" />
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="LevelSelect.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -99,7 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
-    <ClInclude Include="Blocks.h" />
+    <ClInclude Include="Bat.h" />
     <ClInclude Include="Field.h" />
     <ClInclude Include="Form1.h">
       <FileType>CppForm</FileType>

@@ -1,4 +1,4 @@
-﻿Построение начато 13.01.2018 0:07:18.
+﻿Построение начато 13.01.2018 23:05:26.
      1>Проект "C:\Documents and Settings\Alex\Рабочий стол\arkanoid\arkanoid\arkanoid.vcxproj" в узле 2 (целевые объекты build).
      1>InitializeBuildStatus:
          Создание "Debug\arkanoid.unsuccessfulbuild", так как было задано "AlwaysCreate".
@@ -6,18 +6,11 @@
        Целевой объект "GenerateTargetFrameworkMonikerAttribute" пропускается, так как все выходные файлы актуальны по отношению к входным.
        ClCompile:
          Для всех выходных данных обновления не требуется.
-         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr:pure /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\arkanoid.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt LevelSelect.cpp arkanoid.cpp /clr:nostdlib 
-         LevelSelect.cpp
-     1>c:\documents and settings\alex\рабочий стол\arkanoid\arkanoid\LevelSelect.h(379): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _itoa. See online help for details.
-                 C:\Program Files\Microsoft Visual Studio 10.0\VC\include\stdlib.h(867): см. объявление "itoa"
-         arkanoid.cpp
-     1>c:\documents and settings\alex\рабочий стол\arkanoid\arkanoid\LevelSelect.h(379): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _itoa. See online help for details.
-                 C:\Program Files\Microsoft Visual Studio 10.0\VC\include\stdlib.h(867): см. объявление "itoa"
-         Создание кода...
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr:pure /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\arkanoid.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt Ball.cpp /clr:nostdlib 
+         Ball.cpp
          Для всех выходных данных обновления не требуется.
        CoreResGen:
-         "C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\NETFX 4.0 Tools\resgen.exe" /useSourcePath /r:"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /r:"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /r:"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /r:"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /r:"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /r:"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /compile LevelSelect.resx,Debug\arkanoid.LevelSelect.resources
-         Обрабатывается файл ресурсов "LevelSelect.resx", результирующий объект: "Debug\arkanoid.LevelSelect.resources".
+         Для всех выходных данных обновления не требуется.
        ResourceCompile:
          Для всех выходных данных обновления не требуется.
        Link:
@@ -25,7 +18,7 @@
          Debug\arkanoid.obj
          Debug\AssemblyInfo.obj
          Debug\Ball.obj
-         Debug\Blocks.obj
+         Debug\Bat.obj
          Debug\Field.obj
          Debug\LevelSelect.obj
          Debug\stdafx.obj
@@ -40,4 +33,4 @@
 
 Построение успешно завершено.
 
-Затраченное время: 00:00:07.51
+Затраченное время: 00:00:06.54
