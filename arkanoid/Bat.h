@@ -1,10 +1,10 @@
 #pragma once
 #define NARROW 70
 #define WIDE 110
-#define HEIGHT 15
+#define HEIGHT_B 15
 #define MIN_POS 0
-#define STEP 20
-#define Y 405
+#define STEP 30
+#define Y_B 405
 
 class Bat
 {
@@ -17,6 +17,8 @@ public:
 	int& batY();
 	void moveLeft();
 	void moveRight();
+	void retToStartPos();
+	double collisionBat(int& x, int& y, int size);
 private:
 	int fieldWidth;
 	int width;

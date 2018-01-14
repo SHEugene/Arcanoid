@@ -82,6 +82,7 @@ namespace arkanoid {
 	private: System::Windows::Forms::Label^  pause;
 	private: System::Windows::Forms::Label^  lPause;
 	private: System::Windows::Forms::Timer^  gameTime;
+	private: System::Windows::Forms::Timer^  ballTimer;
 	private: System::ComponentModel::IContainer^  components;
 
 
@@ -122,6 +123,7 @@ namespace arkanoid {
 			this->pause = (gcnew System::Windows::Forms::Label());
 			this->lPause = (gcnew System::Windows::Forms::Label());
 			this->gameTime = (gcnew System::Windows::Forms::Timer(this->components));
+			this->ballTimer = (gcnew System::Windows::Forms::Timer(this->components));
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->field))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pLeft))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pRight))->BeginInit();
@@ -135,7 +137,7 @@ namespace arkanoid {
 			this->field->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"field.Image")));
 			this->field->Location = System::Drawing::Point(18, 70);
 			this->field->Name = L"field";
-			this->field->Size = System::Drawing::Size(494, 487);
+			this->field->Size = System::Drawing::Size(494, 435);
 			this->field->TabIndex = 2;
 			this->field->TabStop = false;
 			// 
@@ -334,6 +336,11 @@ namespace arkanoid {
 			this->gameTime->Interval = 1000;
 			this->gameTime->Tick += gcnew System::EventHandler(this, &LevelSelect::gameTime_Tick);
 			// 
+			// ballTimer
+			// 
+			this->ballTimer->Interval = 70;
+			this->ballTimer->Tick += gcnew System::EventHandler(this, &LevelSelect::ballTimer_Tick);
+			// 
 			// LevelSelect
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -434,6 +441,56 @@ System::Void start_Click(System::Object^  sender, System::EventArgs^  e)
 	start->Visible = false;	
 }
 
+System::Void ballTimer_Tick(System::Object^  sender, System::EventArgs^  e)
+{
+ 	if (ball->ySpeed() == 0) ball->ySpeed() = 13; 
+	else ball->move();
+	int situation;
+	if (situation = levels[levelN-1].collisionWalls(ball->ballX(), ball->ballY(), ball->ballSize()))
+	{
+		switch(situation)
+		{
+		case 1:
+			ball->xSpeed() = -ball->xSpeed();
+			break;
+		case 2:
+			ball->ySpeed() = -ball->ySpeed();
+			 break;
+		case 3:			
+			ball->xSpeed() = -ball->xSpeed();
+			break;
+		case 4:
+			ball->retToStartPos();
+			bat->retToStartPos();
+			moveObject(bat->batX(), bat->batY(), batPict);
+			break;
+		default:
+			break;
+		}		
+	}
+	double ctg = bat->collisionBat(ball->ballX(), ball->ballY(), ball->ballSize());
+	if (ctg != -2.0)
+	{
+		ball->xSpeed() = ctg*abs(ball->ySpeed())*0.9;
+		ball->ySpeed() = -ball->ySpeed();
+	}
+	int boardN;
+	vector<int> blocks = levels[levelN-1].collisionBlocks(ball->ballX(), ball->ballY(), ball->ballSize(), boardN);
+	if (boardN)
+	{
+		if (blocks.size())
+		{
+			for (int i = 0; i < blocks.size(); i+=2)
+			{
+				pictureBoxs[blocks[i]*COLUMNS+blocks[i+1]]->Visible = false;
+			}
+		}
+		if (boardN%2 == 0) ball->ySpeed() = -ball->ySpeed();
+		else ball->xSpeed() = -ball->xSpeed();
+	}
+	moveObject(ball->ballX(), ball->ballY(), ballPict);
+}
+
 //отображение времени от начала игры
 System::Void gameTime_Tick(System::Object^  sender, System::EventArgs^  e)
 {
@@ -458,6 +515,7 @@ System::Void save_Click(System::Object^  sender, System::EventArgs^  e)
 		 lPause->Visible = true;	
 		 isPlaying = false;
 		 gameTime->Enabled = false;
+		 ballTimer->Enabled = false;
 		 //спашиваем подтверждение
 		 System::Windows::Forms::DialogResult result;		
 		 result = MessageBox::Show(this, "Сохранить текущую игру?", "Сохранение игры", MessageBoxButtons::YesNo, MessageBoxIcon::Question);
@@ -477,6 +535,7 @@ System::Void pause_Click(System::Object^  sender, System::EventArgs^  e)
 		lPause->Visible = !lPause->Visible;
 		isPlaying = !isPlaying;
 		gameTime->Enabled = !gameTime->Enabled;
+		ballTimer->Enabled = !ballTimer->Enabled;
 	}
 }
 
@@ -490,6 +549,7 @@ System::Void LevelSelect_KeyDown(System::Object^  sender, System::Windows::Forms
 		isPlaying = !isPlaying;
 		lPause->Visible = !lPause->Visible;
 		gameTime->Enabled = !gameTime->Enabled;
+		ballTimer->Enabled = !ballTimer->Enabled;
 		break;
 	//стрелка влево - если не нажата пауза - передвинуть ракетку влево
 	case Keys::Left:

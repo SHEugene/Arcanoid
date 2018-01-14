@@ -2,10 +2,11 @@
 #include "Ball.h"
 
 
-Ball::Ball(int _fieldWidth, int batY)
+Ball::Ball(int _fieldWidth, int _batY)
 {
 	size = SIZE;
 	fieldWidth = _fieldWidth;
+	batY = _batY;
 	y = batY-size;
 	x = (fieldWidth + size)/2;
 	xspeed = yspeed = SPEED;
@@ -22,31 +23,6 @@ void Ball::move()
 	x += xspeed;
 }
 
-int Ball::collisionTest(int x1, int y1, int x2, int y2)
-{ 
-	int coll=0;  
-	if ((x + xspeed + size >= x1
-		&& x + xspeed - size <= x2)
-		&& (y + yspeed + size >= y1
-		&& y + yspeed - size <= y2))
-	{             
-	if (x + size < x1 &&
-	x + xspeed + size >= x1)             
-	coll|=1;
-	if (x - size > x2 &&
-	x + xspeed - size <= x2)                                         
-	coll|=1;
-	if (y + size < y1&&
-	y + yspeed + size >= y1)             
-	coll|=2;                     
-	if (y - size > y2 &&
-	y + yspeed - size <= y2)             
-	coll|=2;                                              
-	}
-	return coll;
-}
-
-
 int& Ball::ballSize()
 {
 	return size;
@@ -60,4 +36,20 @@ int& Ball::ballX()
 int& Ball::ballY()
 {
 	return y;
+}
+
+int& Ball::xSpeed()
+{
+	return xspeed;
+}
+
+int& Ball::ySpeed()
+{
+	return yspeed;
+}
+
+void Ball::retToStartPos()
+{
+	y = batY-size;
+	x = (fieldWidth + size)/2;
 }

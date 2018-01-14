@@ -81,7 +81,7 @@ void LevelSelect::drawField(int number)
 				default:
 					break;
 				}
-				field->Controls->Add(pictureBoxs[i*COLUMNS+j]);
+				if (a[j] != '0') field->Controls->Add(pictureBoxs[i*COLUMNS+j]);
 				x+= 38;
 			}
 			y += 15;

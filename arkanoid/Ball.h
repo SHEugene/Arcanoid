@@ -1,22 +1,23 @@
 #pragma once
 #define SIZE 15
 #define MIN_POS 0
-#define SPEED 20
-#define Y 405
+#define SPEED 0
 class Ball
 {
 public:
-	Ball(int _fieldWidth, int batY);
+	Ball(int _fieldWidth, int _batY);
 	~Ball(void);
-	void move();
-	int collisionTest(int x1, int y1, int x2, int y2);
+	void move();	
 	int& ballSize();
 	int& ballX();
 	int& ballY();
+	int& xSpeed();
+	int& ySpeed();
+	void retToStartPos();
 private:
 	int x, y;
 	int xspeed, yspeed;
 	int size;
-	int fieldWidth;
+	int fieldWidth, batY;
 };
 

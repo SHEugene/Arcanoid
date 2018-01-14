@@ -1,4 +1,4 @@
-﻿Построение начато 13.01.2018 23:05:26.
+﻿Построение начато 14.01.2018 18:32:53.
      1>Проект "C:\Documents and Settings\Alex\Рабочий стол\arkanoid\arkanoid\arkanoid.vcxproj" в узле 2 (целевые объекты build).
      1>InitializeBuildStatus:
          Создание "Debug\arkanoid.unsuccessfulbuild", так как было задано "AlwaysCreate".
@@ -6,8 +6,18 @@
        Целевой объект "GenerateTargetFrameworkMonikerAttribute" пропускается, так как все выходные файлы актуальны по отношению к входным.
        ClCompile:
          Для всех выходных данных обновления не требуется.
-         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr:pure /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\arkanoid.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt Ball.cpp /clr:nostdlib 
-         Ball.cpp
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr:pure /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\arkanoid.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt LevelSelect.cpp arkanoid.cpp /clr:nostdlib 
+         LevelSelect.cpp
+     1>c:\documents and settings\alex\рабочий стол\arkanoid\arkanoid\LevelSelect.h(419): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _itoa. See online help for details.
+                 C:\Program Files\Microsoft Visual Studio 10.0\VC\include\stdlib.h(867): см. объявление "itoa"
+     1>c:\documents and settings\alex\рабочий стол\arkanoid\arkanoid\LevelSelect.h(474): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+     1>c:\documents and settings\alex\рабочий стол\arkanoid\arkanoid\LevelSelect.h(483): warning C4018: <: несоответствие типов со знаком и без знака
+         arkanoid.cpp
+     1>c:\documents and settings\alex\рабочий стол\arkanoid\arkanoid\LevelSelect.h(419): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _itoa. See online help for details.
+                 C:\Program Files\Microsoft Visual Studio 10.0\VC\include\stdlib.h(867): см. объявление "itoa"
+     1>c:\documents and settings\alex\рабочий стол\arkanoid\arkanoid\LevelSelect.h(474): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+     1>c:\documents and settings\alex\рабочий стол\arkanoid\arkanoid\LevelSelect.h(483): warning C4018: <: несоответствие типов со знаком и без знака
+         Создание кода...
          Для всех выходных данных обновления не требуется.
        CoreResGen:
          Для всех выходных данных обновления не требуется.
@@ -33,4 +43,4 @@
 
 Построение успешно завершено.
 
-Затраченное время: 00:00:06.54
+Затраченное время: 00:00:04.79
