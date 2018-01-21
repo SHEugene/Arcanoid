@@ -1,46 +1,77 @@
-﻿Построение начато 14.01.2018 18:32:53.
-     1>Проект "C:\Documents and Settings\Alex\Рабочий стол\arkanoid\arkanoid\arkanoid.vcxproj" в узле 2 (целевые объекты build).
+﻿Построение начато 17.01.2018 21:03:09.
+     1>Проект "C:\Documents and Settings\Alex\Рабочий стол\arkanoid_vFin\arkanoid_v5\arkanoid\arkanoid.vcxproj" в узле 2 (целевые объекты build).
      1>InitializeBuildStatus:
          Создание "Debug\arkanoid.unsuccessfulbuild", так как было задано "AlwaysCreate".
        GenerateTargetFrameworkMonikerAttribute:
        Целевой объект "GenerateTargetFrameworkMonikerAttribute" пропускается, так как все выходные файлы актуальны по отношению к входным.
        ClCompile:
-         Для всех выходных данных обновления не требуется.
-         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr:pure /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\arkanoid.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt LevelSelect.cpp arkanoid.cpp /clr:nostdlib 
-         LevelSelect.cpp
-     1>c:\documents and settings\alex\рабочий стол\arkanoid\arkanoid\LevelSelect.h(419): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _itoa. See online help for details.
-                 C:\Program Files\Microsoft Visual Studio 10.0\VC\include\stdlib.h(867): см. объявление "itoa"
-     1>c:\documents and settings\alex\рабочий стол\arkanoid\arkanoid\LevelSelect.h(474): warning C4244: =: преобразование "double" в "int", возможна потеря данных
-     1>c:\documents and settings\alex\рабочий стол\arkanoid\arkanoid\LevelSelect.h(483): warning C4018: <: несоответствие типов со знаком и без знака
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr:pure /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"StdAfx.h" /Fp"Debug\arkanoid.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt stdafx.cpp /clr:nostdlib 
+         stdafx.cpp
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr:pure /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\arkanoid.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt arkanoid.cpp AssemblyInfo.cpp Ball.cpp Bat.cpp Field.cpp Form1.cpp FormResult.cpp Game.cpp LevelSelect.cpp Result.cpp UName.cpp /clr:nostdlib 
          arkanoid.cpp
-     1>c:\documents and settings\alex\рабочий стол\arkanoid\arkanoid\LevelSelect.h(419): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _itoa. See online help for details.
+         AssemblyInfo.cpp
+         Ball.cpp
+         Bat.cpp
+         Field.cpp
+     1>Field.cpp(138): warning C4018: <: несоответствие типов со знаком и без знака
+     1>Field.cpp(153): warning C4018: <=: несоответствие типов со знаком и без знака
+     1>Field.cpp(182): warning C4018: <: несоответствие типов со знаком и без знака
+     1>Field.cpp(185): warning C4018: <: несоответствие типов со знаком и без знака
+     1>Field.cpp(189): warning C4018: <: несоответствие типов со знаком и без знака
+     1>Field.cpp(197): warning C4018: <: несоответствие типов со знаком и без знака
+     1>Field.cpp(199): warning C4018: <: несоответствие типов со знаком и без знака
+         Form1.cpp
+     1>c:\documents and settings\alex\рабочий стол\arkanoid_vfin\arkanoid_v5\arkanoid\LevelSelect.h(498): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _itoa. See online help for details.
                  C:\Program Files\Microsoft Visual Studio 10.0\VC\include\stdlib.h(867): см. объявление "itoa"
-     1>c:\documents and settings\alex\рабочий стол\arkanoid\arkanoid\LevelSelect.h(474): warning C4244: =: преобразование "double" в "int", возможна потеря данных
-     1>c:\documents and settings\alex\рабочий стол\arkanoid\arkanoid\LevelSelect.h(483): warning C4018: <: несоответствие типов со знаком и без знака
+     1>c:\documents and settings\alex\рабочий стол\arkanoid_vfin\arkanoid_v5\arkanoid\FormResult.h(204): warning C4005: COLUMNS: изменение макроопределения
+                 c:\documents and settings\alex\рабочий стол\arkanoid_vfin\arkanoid_v5\arkanoid\LevelSelect.h(433): см. предыдущее определение "COLUMNS"
+         FormResult.cpp
+         Game.cpp
+     1>Game.cpp(52): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+     1>Game.cpp(113): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+         LevelSelect.cpp
+     1>c:\documents and settings\alex\рабочий стол\arkanoid_vfin\arkanoid_v5\arkanoid\LevelSelect.h(498): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _itoa. See online help for details.
+                 C:\Program Files\Microsoft Visual Studio 10.0\VC\include\stdlib.h(867): см. объявление "itoa"
+     1>LevelSelect.cpp(193): warning C4018: <: несоответствие типов со знаком и без знака
+         Result.cpp
+     1>Result.cpp(11): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _itoa. See online help for details.
+                 C:\Program Files\Microsoft Visual Studio 10.0\VC\include\stdlib.h(867): см. объявление "itoa"
+         UName.cpp
+     1>c:\documents and settings\alex\рабочий стол\arkanoid_vfin\arkanoid_v5\arkanoid\LevelSelect.h(498): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _itoa. See online help for details.
+                 C:\Program Files\Microsoft Visual Studio 10.0\VC\include\stdlib.h(867): см. объявление "itoa"
          Создание кода...
          Для всех выходных данных обновления не требуется.
        CoreResGen:
-         Для всех выходных данных обновления не требуется.
+         "C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\NETFX 4.0 Tools\resgen.exe" /useSourcePath /r:"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /r:"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /r:"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /r:"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /r:"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /r:"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /compile Form1.resX,Debug\arkanoid.Form1.resources FormResult.resx,Debug\arkanoid.FormResult.resources LevelSelect.resx,Debug\arkanoid.LevelSelect.resources UName.resx,Debug\arkanoid.UName.resources
+         Обрабатывается файл ресурсов "Form1.resX", результирующий объект: "Debug\arkanoid.Form1.resources".
+         Обрабатывается файл ресурсов "FormResult.resx", результирующий объект: "Debug\arkanoid.FormResult.resources".
+         Обрабатывается файл ресурсов "LevelSelect.resx", результирующий объект: "Debug\arkanoid.LevelSelect.resources".
+         Обрабатывается файл ресурсов "UName.resx", результирующий объект: "Debug\arkanoid.UName.resources".
        ResourceCompile:
-         Для всех выходных данных обновления не требуется.
+         C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"Debug\app.res" app.rc 
        Link:
-         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Documents and Settings\Alex\Рабочий стол\arkanoid\Debug\arkanoid.exe" /INCREMENTAL /NOLOGO /ASSEMBLYRESOURCE:Debug\arkanoid.Form1.resources /ASSEMBLYRESOURCE:Debug\arkanoid.LevelSelect.resources /MANIFEST /ManifestFile:"Debug\arkanoid.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Documents and Settings\Alex\Рабочий стол\arkanoid\Debug\arkanoid.pdb" /ASSEMBLYDEBUG /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"main" /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 Debug\app.res
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Documents and Settings\Alex\Рабочий стол\arkanoid_vFin\arkanoid_v5\Debug\arkanoid.exe" /INCREMENTAL /NOLOGO /ASSEMBLYRESOURCE:Debug\arkanoid.Form1.resources /ASSEMBLYRESOURCE:Debug\arkanoid.FormResult.resources /ASSEMBLYRESOURCE:Debug\arkanoid.LevelSelect.resources /ASSEMBLYRESOURCE:Debug\arkanoid.UName.resources /MANIFEST /ManifestFile:"Debug\arkanoid.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Documents and Settings\Alex\Рабочий стол\arkanoid_vFin\arkanoid_v5\Debug\arkanoid.pdb" /ASSEMBLYDEBUG /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"main" /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 Debug\app.res
          Debug\arkanoid.obj
          Debug\AssemblyInfo.obj
          Debug\Ball.obj
          Debug\Bat.obj
          Debug\Field.obj
+         Debug\Form1.obj
+         Debug\FormResult.obj
+         Debug\Game.obj
          Debug\LevelSelect.obj
+         Debug\Result.obj
          Debug\stdafx.obj
+         Debug\UName.obj
          "Debug\.NETFramework,Version=v4.0.AssemblyAttributes.obj"
-         arkanoid.vcxproj -> C:\Documents and Settings\Alex\Рабочий стол\arkanoid\Debug\arkanoid.exe
+         arkanoid.vcxproj -> C:\Documents and Settings\Alex\Рабочий стол\arkanoid_vFin\arkanoid_v5\Debug\arkanoid.exe
        Manifest:
-         C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Documents and Settings\Alex\Рабочий стол\arkanoid\Debug\arkanoid.exe;#1" /manifest Debug\arkanoid.exe.intermediate.manifest
+         C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Documents and Settings\Alex\Рабочий стол\arkanoid_vFin\arkanoid_v5\Debug\arkanoid.exe;#1" /manifest Debug\arkanoid.exe.intermediate.manifest
        FinalizeBuildStatus:
          Файл "Debug\arkanoid.unsuccessfulbuild" удаляется.
          Обращение к "Debug\arkanoid.lastbuildstate".
-     1>Построение проекта "C:\Documents and Settings\Alex\Рабочий стол\arkanoid\arkanoid\arkanoid.vcxproj" завершено (целевые объекты build).
+     1>Построение проекта "C:\Documents and Settings\Alex\Рабочий стол\arkanoid_vFin\arkanoid_v5\arkanoid\arkanoid.vcxproj" завершено (целевые объекты build).
 
 Построение успешно завершено.
 
-Затраченное время: 00:00:04.79
+Затраченное время: 00:00:13.56

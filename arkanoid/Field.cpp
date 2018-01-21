@@ -1,9 +1,17 @@
 #include "StdAfx.h"
 #include "Field.h"
 
-
+//конструктор класса - инициализирует переменніе и таблицу очков
 Field::Field(void)
 {
+	score = 0;
+	fWidth = WIDTH;
+	scoreTable.insert(pair<char, int>('R', 4));
+	scoreTable.insert(pair<char, int>('Y', 3));
+	scoreTable.insert(pair<char, int>('G', 2));
+	scoreTable.insert(pair<char, int>('B', 1));
+	scoreTable.insert(pair<char, int>('C', 50));
+	scoreTable.insert(pair<char, int>('D', 25));
 }
 
 
@@ -26,65 +34,82 @@ void Field::createFromFile(string fName)
 	fin.close();
 }
 
-int Field::rowsNumber()
-{
-	return matrix.size();
-}
-
-string Field::operator[](int n)
-{
-	string result = "";
-	if (n <= matrix.size())
-	{
-		result = matrix[n];
-	}
-	return result;
-}
-
-//сохранение игры
+//сохранение матрицы в файл
 void Field::save()
 {
 	ofstream fout;
 	//загрузка уровня в файл
-	fout.open(SAVE_FILE_NAME);
+	fout.open(SAVE_FIELD_NAME);
 	int rows = matrix.size();
-	for(int i = 0; i < rows; i++)
+	for(int i = 0; i < rows-1; i++)
 	{
 		fout << matrix[i] << endl;
 	}
+	fout << matrix[rows-1];
 	fout.close();
 }
 
+//проверка на столкновение объекта с краями поля
+int Field::collisionWalls(int& x, int& y, int size)
+{
+	int wall = 0;
+	if (x + size >= WIDTH) //правый край
+	{
+		wall = 1;
+		x = WIDTH-size;
+	}
+	if (x <= MIN_POS) //левый край
+	{
+		wall = 3;
+		x = MIN_POS;
+	}
+	if (y <= MIN_POS) //верхний край
+	{
+		wall = 2;
+		y = MIN_POS;
+	}
+	if (y >= HEIGHT) //нижний край
+	{
+		wall = 4;
+	}
+	return wall;
+} 
+
+//проверка на столкновение объекта с краями блоков
 vector<int> Field::collisionBlocks(int &x, int &y, int size, int &board)
 {
 	vector<int> result;
 	result.clear();
-	//расчитать номера блоков рядом с которыми находится шар
+	
 	board = 0;
 	int row, col;
 	int num;
-	if (num = checkBoard(x, y, x+size, y, row, col))
-	{
+
+	//вычислить с какой стороны было столкновение с блоком и было ли вообще
+	if (num = checkBoard(x, y, x+size, y, row, col) && (row+1 == matrix.size() ? true : (matrix[row+1][col] == '0' ? true : false)))
+	{   //снизу
 		board = 2;
 		y = (row+1)*BLOCK_HEIGHT;
 	}
-	else if (num = checkBoard(x, y+size, x+size, y+size, row, col))	
-	{
+	else if (num = checkBoard(x, y+size, x+size, y+size, row, col) && matrix[row-1][col] == '0')	
+	{	//сверху
 		board = 4;
 		y = (row)*BLOCK_HEIGHT-size;
 	}
-	else if (num = checkBoard(x, y, x, y+size, row, col))	
-	{
+	else if (num = checkBoard(x, y, x, y+size, row, col) && matrix[row][col+1] == '0')	
+	{	//справа
 		board = 1;
 		x = (col+1)*BLOCK_WIDTH;
 	}
-	else if (num = checkBoard(x+size, y, x+size, y+size, row, col))	
-	{
+	else if (num = checkBoard(x+size, y, x+size, y+size, row, col) && matrix[row][col-1] == '0')	
+	{	//слева
 		board = 3;
 		x = (col)*BLOCK_WIDTH-size;
 	}
-	if (num)
+
+	if (board) //если столкеновение было
 	{		
+		//создать результирущий вектор
 		result.push_back(row);
 		result.push_back(col);
 		if (num == 2)
@@ -100,32 +125,56 @@ vector<int> Field::collisionBlocks(int &x, int &y, int size, int &board)
 				result.push_back(col);
 			}			
 		}
-		applyCollision(result);
+		
+		applyCollision(result); //применить результаты столкновения к полю
 	}
 	return result;
 }
 
-void  Field::applyCollision(vector<int>& index)
+//проверка просты ли все ячейки поля
+bool Field::isEmpty()
 {
-	for(int i = 0; i < index.size(); i+=2)
+	bool result = true;
+	for (int i = 0; i < matrix.size(); i++)
 	{
-		int a = index.size();
-		char bl = matrix[index[i]][index[i+1]];
-		if (bl != 'O' && bl != 'A')
+		if (matrix[i] != "0000000000000")
 		{
-			matrix[index[i]][index[i+1]] = '0';
-		}
-		else      
-		{
-			if (bl == 'O') matrix[index[i]][index[i+1]] = 'C';
-			if (bl == 'A') matrix[index[i]][index[i+1]] = 'D';
-			index.erase(index.begin()+i, index.begin()+i+2);
-			int b = index.size();
-			i-=2;
+			result = false;
+			break;
 		}
 	}
+	return result;
 }
 
+//для доступа к матрици через []
+string Field::operator[](int n)
+{
+	string result = "";
+	if (n <= matrix.size())
+	{
+		result = matrix[n];
+	}
+	return result;
+}
+
+//возвращает колицество строк матрицы
+int Field::rowsNumber()
+{
+	return matrix.size();
+}
+
+//методы предоставляющие доступ к ширине поля и очкам набранным
+int& Field::scores()
+{
+	return score;
+}
+
+int&  Field::width()
+{
+	return fWidth;
+}
+
+//проаерить коснулся ли объект блока и соседнему к нему
 int Field::checkBoard(int x, int y, int x1, int y1, int &row, int &col)
 {
 	int result = 0;
@@ -157,27 +206,30 @@ int Field::checkBoard(int x, int y, int x1, int y1, int &row, int &col)
 	return result;
 }
 
-int Field::collisionWalls(int& x, int& y, int size)
+//применить результаты столкновения к полю
+void  Field::applyCollision(vector<int>& index)
 {
-	int wall = 0;
-	if (x + size >= WIDTH)
+	for(unsigned int i = 0; i < index.size(); i+=2)
 	{
-		wall = 1;
-		x = WIDTH-size;
+		int a = index.size();
+		char bl = matrix[index[i]][index[i+1]];
+		if (bl != 'O' && bl != 'A')
+		{
+			score += scoreTable.find(matrix[index[i]][index[i+1]])->second;
+			matrix[index[i]][index[i+1]] = '0';
+		
+		}
+		else      
+		{
+			if (bl == 'O') matrix[index[i]][index[i+1]] = 'C';
+			if (bl == 'A') matrix[index[i]][index[i+1]] = 'D';
+			index.erase(index.begin()+i, index.begin()+i+2);
+			int b = index.size();
+			i-=2;
+		}
 	}
-	if (x <= MIN_POS)
-	{
-		wall = 3;
-		x = MIN_POS;
-	}
-	if (y <= MIN_POS)
-	{
-		wall = 2;
-		y = MIN_POS;
-	}
-	if (y >= HEIGHT)
-	{
-		wall = 4;
-	}
-	return wall;
-}           
+}
+
+
+     
+

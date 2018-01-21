@@ -1,4 +1,5 @@
 #pragma once
+#include "Form1.h"
 #include <vector>
 #include <stdlib.h>     /* strtod */
 #include <Windows.h>
@@ -6,8 +7,7 @@
 #include <fstream>
 #include <list>
 #include "Field.h"
-#include "Bat.h"
-#include "Ball.h"
+#include "Game.h"
 using namespace std;
 
 namespace arkanoid {
@@ -26,7 +26,8 @@ namespace arkanoid {
 	public ref class LevelSelect : public System::Windows::Forms::Form
 	{
 	private:
-	//	Form1^ mainForm;
+	Form1^ mainForm;
+	bool isNew;
 	public:
 		LevelSelect (void)
 		{
@@ -36,14 +37,12 @@ namespace arkanoid {
 			//
 		}
 
-	/*	LevelSelect (Form1^ form)
+	LevelSelect (Form1^ form, bool _isNew)
 		{
 			InitializeComponent();
-			//
-			//TODO: добавьте код конструктора
-			//
 			mainForm = form;
-		}*/
+			isNew = _isNew;
+		}
   
 
 	protected:
@@ -77,12 +76,19 @@ namespace arkanoid {
 
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::Label^  save;
+	private: System::Windows::Forms::Label^  lscore;
 
-	private: System::Windows::Forms::Label^  label4;
+
 	private: System::Windows::Forms::Label^  pause;
 	private: System::Windows::Forms::Label^  lPause;
 	private: System::Windows::Forms::Timer^  gameTime;
 	private: System::Windows::Forms::Timer^  ballTimer;
+	private: System::Windows::Forms::Label^  lFall;
+	private: System::Windows::Forms::Label^  lLife;
+
+
+
+
 	private: System::ComponentModel::IContainer^  components;
 
 
@@ -119,11 +125,13 @@ namespace arkanoid {
 			this->lTime = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->save = (gcnew System::Windows::Forms::Label());
-			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->lscore = (gcnew System::Windows::Forms::Label());
 			this->pause = (gcnew System::Windows::Forms::Label());
 			this->lPause = (gcnew System::Windows::Forms::Label());
 			this->gameTime = (gcnew System::Windows::Forms::Timer(this->components));
 			this->ballTimer = (gcnew System::Windows::Forms::Timer(this->components));
+			this->lFall = (gcnew System::Windows::Forms::Label());
+			this->lLife = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->field))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pLeft))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pRight))->BeginInit();
@@ -137,7 +145,7 @@ namespace arkanoid {
 			this->field->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"field.Image")));
 			this->field->Location = System::Drawing::Point(18, 70);
 			this->field->Name = L"field";
-			this->field->Size = System::Drawing::Size(494, 435);
+			this->field->Size = System::Drawing::Size(494, 459);
 			this->field->TabIndex = 2;
 			this->field->TabStop = false;
 			// 
@@ -159,6 +167,7 @@ namespace arkanoid {
 			// 
 			this->start->AutoSize = true;
 			this->start->BackColor = System::Drawing::Color::Transparent;
+			this->start->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->start->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 27.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(204)));
 			this->start->ForeColor = System::Drawing::Color::Purple;
@@ -176,6 +185,7 @@ namespace arkanoid {
 			// 
 			this->pLeft->BackColor = System::Drawing::Color::Transparent;
 			this->pLeft->BackgroundImage = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"pLeft.BackgroundImage")));
+			this->pLeft->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->pLeft->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"pLeft.Image")));
 			this->pLeft->Location = System::Drawing::Point(94, 355);
 			this->pLeft->Name = L"pLeft";
@@ -189,6 +199,7 @@ namespace arkanoid {
 			// 
 			this->pRight->BackColor = System::Drawing::Color::Transparent;
 			this->pRight->BackgroundImage = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"pRight.BackgroundImage")));
+			this->pRight->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->pRight->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"pRight.Image")));
 			this->pRight->Location = System::Drawing::Point(360, 355);
 			this->pRight->Name = L"pRight";
@@ -230,6 +241,7 @@ namespace arkanoid {
 			// 
 			this->manu->AutoSize = true;
 			this->manu->BackColor = System::Drawing::Color::Transparent;
+			this->manu->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->manu->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(204)));
 			this->manu->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)), 
@@ -273,6 +285,7 @@ namespace arkanoid {
 			// 
 			this->save->AutoSize = true;
 			this->save->BackColor = System::Drawing::Color::Transparent;
+			this->save->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->save->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(204)));
 			this->save->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)), 
@@ -286,24 +299,25 @@ namespace arkanoid {
 			this->save->MouseEnter += gcnew System::EventHandler(this, &LevelSelect::save_MouseEnter);
 			this->save->MouseLeave += gcnew System::EventHandler(this, &LevelSelect::save_MouseLeave);
 			// 
-			// label4
+			// lscore
 			// 
-			this->label4->AutoSize = true;
-			this->label4->BackColor = System::Drawing::Color::Transparent;
-			this->label4->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
+			this->lscore->AutoSize = true;
+			this->lscore->BackColor = System::Drawing::Color::Transparent;
+			this->lscore->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(204)));
-			this->label4->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(192)), 
+			this->lscore->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(192)), 
 				static_cast<System::Int32>(static_cast<System::Byte>(128)));
-			this->label4->Location = System::Drawing::Point(348, 5);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(81, 38);
-			this->label4->TabIndex = 14;
-			this->label4->Text = L"0000";
+			this->lscore->Location = System::Drawing::Point(348, 5);
+			this->lscore->Name = L"lscore";
+			this->lscore->Size = System::Drawing::Size(81, 38);
+			this->lscore->TabIndex = 14;
+			this->lscore->Text = L"0000";
 			// 
 			// pause
 			// 
 			this->pause->AutoSize = true;
 			this->pause->BackColor = System::Drawing::Color::Transparent;
+			this->pause->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->pause->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(204)));
 			this->pause->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)), 
@@ -338,18 +352,51 @@ namespace arkanoid {
 			// 
 			// ballTimer
 			// 
-			this->ballTimer->Interval = 70;
+			this->ballTimer->Interval = 27;
 			this->ballTimer->Tick += gcnew System::EventHandler(this, &LevelSelect::ballTimer_Tick);
+			// 
+			// lFall
+			// 
+			this->lFall->BackColor = System::Drawing::Color::Transparent;
+			this->lFall->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 21.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(204)));
+			this->lFall->ForeColor = System::Drawing::Color::Red;
+			this->lFall->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"lFall.Image")));
+			this->lFall->Location = System::Drawing::Point(115, 71);
+			this->lFall->Name = L"lFall";
+			this->lFall->Size = System::Drawing::Size(299, 35);
+			this->lFall->TabIndex = 17;
+			this->lFall->Text = L"Жизнь потеряна";
+			this->lFall->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			this->lFall->Visible = false;
+			// 
+			// lLife
+			// 
+			this->lLife->BackColor = System::Drawing::Color::Transparent;
+			this->lLife->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(204)));
+			this->lLife->ForeColor = System::Drawing::Color::Purple;
+			this->lLife->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"lLife.Image")));
+			this->lLife->Location = System::Drawing::Point(17, 479);
+			this->lLife->Margin = System::Windows::Forms::Padding(0);
+			this->lLife->Name = L"lLife";
+			this->lLife->Size = System::Drawing::Size(191, 30);
+			this->lLife->TabIndex = 18;
+			this->lLife->Text = L"Жизней:";
+			this->lLife->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			this->lLife->Visible = false;
 			// 
 			// LevelSelect
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"$this.BackgroundImage")));
-			this->ClientSize = System::Drawing::Size(529, 504);
+			this->ClientSize = System::Drawing::Size(529, 514);
+			this->Controls->Add(this->lLife);
+			this->Controls->Add(this->lFall);
 			this->Controls->Add(this->lPause);
 			this->Controls->Add(this->pause);
-			this->Controls->Add(this->label4);
+			this->Controls->Add(this->lscore);
 			this->Controls->Add(this->save);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->lTime);
@@ -362,10 +409,12 @@ namespace arkanoid {
 			this->Controls->Add(this->start);
 			this->Controls->Add(this->level);
 			this->Controls->Add(this->field);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::Fixed3D;
 			this->MaximizeBox = false;
 			this->Name = L"LevelSelect";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Выбор уровня";
+			this->FormClosed += gcnew System::Windows::Forms::FormClosedEventHandler(this, &LevelSelect::LevelSelect_FormClosed);
 			this->Load += gcnew System::EventHandler(this, &LevelSelect::LevelSelect_Load);
 			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &LevelSelect::LevelSelect_KeyDown);
 			this->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &LevelSelect::LevelSelect_KeyPress);
@@ -383,127 +432,119 @@ namespace arkanoid {
 #define LEVELS 5
 #define COLUMNS 13
 	private:
-
-	int levelN, rows;
-	int gTime;
-	
+	int levelN, rows;	
 	Field* levels; //массив полей
+
 	array<PictureBox^>^ pictureBoxs;
 	bool onGame, isPlaying;
 		
-	Bat* bat;
-	Ball* ball;
+	Game* game; //класс игры
 	PictureBox^ batPict;
 	PictureBox^ ballPict;
+	Label^ lLifes;
 
+	//иницилизирует метку с количеством жизни
+	void initLifeLabel();
+	//иницилизирует картинку ракетки и отображает ее на экране
 	void initBat();
+	//иницилизирует картинку мячика и отображает его на экране
 	void initBall();
-	void drawField(int number);
+	
+	//привести игру в игровое состояние
+	void startGameElem();
+	//привести игру в начальное неигровое состояние
+	void startElem();
+	//начать сохраненнцю игру
+	void contGame(System::Object^  sender, System::EventArgs^  e);
+
+	//прорисовать поле
+	void drawField(Field f);
+	//поместить объкт в указаном месте
 	void moveObject(int x, int y, PictureBox^ pb);
+	
+	//отображение времени от начала игры
+	System::Void gameTime_Tick(System::Object^  sender, System::EventArgs^  e);
 
+	//обеспечение передвижния мяча
+	System::Void ballTimer_Tick(System::Object^  sender, System::EventArgs^  e);
+	//выполнение дейстыий после окончания игры
+	void endedGame();
+	//проверка результата игры
+	void checkResult();
+	//выполнение дейстыий после победы
+	void victoriActions();	
+	//выполнение дейстыий после проигрыша
+	void loseActions(System::Object^  sender, System::EventArgs^  e);
 
-	//инициализация компонентов при загрузке формы
-	System::Void LevelSelect_Load(System::Object^  sender, System::EventArgs^  e) 
+	//обработчик события при нажатия на определенные клавиши
+	System::Void LevelSelect_KeyDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e);
+
+	//вернуться в гланое меню
+	void toMainManu();
+	
+//инициализация компонентов при загрузке формы
+System::Void LevelSelect_Load(System::Object^  sender, System::EventArgs^  e) 
+{
+	rows = 0;
+	levelN = 1;
+	isPlaying = false;
+	onGame = false;
+	
+	levels = new Field[LEVELS];
+	//загрузка уровней из файла
+	for(int i = 1; i <= LEVELS; i++)
 	{
-		gTime = 0;
-		lPause->Visible = false;
-		isPlaying = false;
-		onGame = false;
-		rows = 0;
-		levelN = 1;
-		levels = new Field[LEVELS];
-		//загрузка уровней из файла
-		for(int i = 1; i <= LEVELS; i++)
-		{
-			char num[3];
-			itoa(i,num,10);
-			string fName = num;	
-			levels[i-1].createFromFile("levels/"+fName+".txt");	
-		}
-		drawField(1);
-		pLeft->Visible = false;
+		char num[3];
+		itoa(i,num,10);
+		string fName = num;	
+		levels[i-1].createFromFile("levels/"+fName+".txt");	
 	}
+
+	initLifeLabel();
+
+	if (isNew) startElem();
+	else contGame(sender, e);
+}
+
+System::Void LevelSelect_FormClosed(System::Object^  sender, System::Windows::Forms::FormClosedEventArgs^  e)
+{
+	mainForm->Close();
+}
 
 //выбор уровня закончен - пора перейти к игре
 System::Void start_Click(System::Object^  sender, System::EventArgs^  e)
 {
 	//начать игру и инициализировать компоненты
 	onGame = true;
-	gTime = 0;
+	game = new Game(levels[levelN-1]);
+	game->level() = levelN-1;
 	initBat();
 	initBall();
 	this->Text = level->Text;
-	lPause->Visible = true;
-	//скрыть ненужные элементы управления
-	pLeft->Visible = false;
-	pRight->Visible = false;
-	level->Visible = false;
-	start->Visible = false;	
-}
-
-System::Void ballTimer_Tick(System::Object^  sender, System::EventArgs^  e)
-{
- 	if (ball->ySpeed() == 0) ball->ySpeed() = 13; 
-	else ball->move();
-	int situation;
-	if (situation = levels[levelN-1].collisionWalls(ball->ballX(), ball->ballY(), ball->ballSize()))
-	{
-		switch(situation)
-		{
-		case 1:
-			ball->xSpeed() = -ball->xSpeed();
-			break;
-		case 2:
-			ball->ySpeed() = -ball->ySpeed();
-			 break;
-		case 3:			
-			ball->xSpeed() = -ball->xSpeed();
-			break;
-		case 4:
-			ball->retToStartPos();
-			bat->retToStartPos();
-			moveObject(bat->batX(), bat->batY(), batPict);
-			break;
-		default:
-			break;
-		}		
-	}
-	double ctg = bat->collisionBat(ball->ballX(), ball->ballY(), ball->ballSize());
-	if (ctg != -2.0)
-	{
-		ball->xSpeed() = ctg*abs(ball->ySpeed())*0.9;
-		ball->ySpeed() = -ball->ySpeed();
-	}
-	int boardN;
-	vector<int> blocks = levels[levelN-1].collisionBlocks(ball->ballX(), ball->ballY(), ball->ballSize(), boardN);
-	if (boardN)
-	{
-		if (blocks.size())
-		{
-			for (int i = 0; i < blocks.size(); i+=2)
-			{
-				pictureBoxs[blocks[i]*COLUMNS+blocks[i+1]]->Visible = false;
-			}
-		}
-		if (boardN%2 == 0) ball->ySpeed() = -ball->ySpeed();
-		else ball->xSpeed() = -ball->xSpeed();
-	}
-	moveObject(ball->ballX(), ball->ballY(), ballPict);
-}
-
-//отображение времени от начала игры
-System::Void gameTime_Tick(System::Object^  sender, System::EventArgs^  e)
-{
-	gTime++;
-	int minutes = gTime/60;
-	int seconds = gTime%60;
-	lTime->Text =  ((minutes < 10) ? "0" : "")+System::Convert::ToString(minutes)+":"+((seconds < 10) ? "0" : "")+System::Convert::ToString(seconds);
+	lTime->Text = "00:00"; 	
+	startGameElem();
 }
 
 //Возврат назад в главное меню
 System::Void manu_Click(System::Object^  sender, System::EventArgs^  e)
 {
-
+	if (onGame)
+	{
+		//ставим на паузу
+		lPause->Visible = true;	
+		isPlaying = false;
+		gameTime->Enabled = false;
+		ballTimer->Enabled = false;
+	}
+	System::Windows::Forms::DialogResult result;		
+	result = MessageBox::Show(this, "Вы действительно хотите выйти?", "Выход", MessageBoxButtons::YesNo, MessageBoxIcon::Question);
+    //желает ли пользователь выйти
+	if (result == System::Windows::Forms::DialogResult::Yes)
+	{
+		save_Click(sender, e);
+		mainForm->Show();
+		this->Hide();	
+	} 	
 }
 
 //сохранение игры
@@ -516,13 +557,13 @@ System::Void save_Click(System::Object^  sender, System::EventArgs^  e)
 		 isPlaying = false;
 		 gameTime->Enabled = false;
 		 ballTimer->Enabled = false;
-		 //спашиваем подтверждение
+		 //спрашиваем подтверждение
 		 System::Windows::Forms::DialogResult result;		
 		 result = MessageBox::Show(this, "Сохранить текущую игру?", "Сохранение игры", MessageBoxButtons::YesNo, MessageBoxIcon::Question);
-         if (result == System::Windows::Forms::DialogResult::Yes)
+         //если он хочет сохранять - сохранить
+		 if (result == System::Windows::Forms::DialogResult::Yes)
 		 {
-//TO DO: сохранить положение ракетки, шара, таймера и очки
-			 levels[levelN-1].save(); //если да - то сохраняем
+			 game->save();
 		 }		 
 	}
 }
@@ -536,39 +577,7 @@ System::Void pause_Click(System::Object^  sender, System::EventArgs^  e)
 		isPlaying = !isPlaying;
 		gameTime->Enabled = !gameTime->Enabled;
 		ballTimer->Enabled = !ballTimer->Enabled;
-	}
-}
-
-//обработчик события при нажатия на определенные клавиши
-System::Void LevelSelect_KeyDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e)
-{
-	switch (e->KeyCode)
-	{
-	//пробелл - остановить или продолжить игру
-	case Keys::Space:
-		isPlaying = !isPlaying;
-		lPause->Visible = !lPause->Visible;
-		gameTime->Enabled = !gameTime->Enabled;
-		ballTimer->Enabled = !ballTimer->Enabled;
-		break;
-	//стрелка влево - если не нажата пауза - передвинуть ракетку влево
-	case Keys::Left:
-		if (isPlaying) 
-		{
-			bat->moveLeft();			
-			moveObject(bat->batX(), bat->batY(), batPict); //прорисовать в новом месте
-		}
-		break;
-	//стрелка вправо - если не нажата пауза - передвинуть ракетку вправо
-	case Keys::Right:
-			if (isPlaying) 
-			{
-				bat->moveRight();			
-				moveObject(bat->batX(), bat->batY(), batPict); //прорисовать в новом месте
-			}
-			break;
-	default:
-			break;
+		lFall->Visible = false;
 	}
 }
 
@@ -578,7 +587,7 @@ System::Void pLeft_Click(System::Object^  sender, System::EventArgs^  e)
 	//удаляем отраженные ранее пикчерБоксы
 	for (int i = 0; i < rows*COLUMNS; i++) delete pictureBoxs[i];
 	levelN--;
-	drawField(levelN); //рисуем новые
+	drawField(levels[levelN-1]); //рисуем новые
 	if (levelN <= 1) pLeft->Visible = false;
 	pRight->Visible = true;
 	level->Text = "Уровень "+System::Convert::ToInt32(levelN);
@@ -590,7 +599,7 @@ System::Void pRight_Click(System::Object^  sender, System::EventArgs^  e)
 	//удаляем отраженные ранее пикчерБоксы
 	for (int i = 0; i < rows*COLUMNS; i++) delete pictureBoxs[i];
 	levelN++; 
-	drawField(levelN); //рисуем новые
+	drawField(levels[levelN-1]); //рисуем новые
 	if (levelN >= LEVELS) pRight->Visible = false;
 	pLeft->Visible = true;
 	level->Text = "Уровень "+System::Convert::ToInt32(levelN);

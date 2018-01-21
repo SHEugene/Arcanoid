@@ -1,14 +1,13 @@
 #include "StdAfx.h"
 #include "Bat.h"
 
-
+//конструктор использует ширину поля и инициализирует поля класса
 Bat::Bat(int _fieldWidth)
 {
 	fieldWidth = _fieldWidth;
 	width = NARROW;
-	height = HEIGHT_B;
-	x = (fieldWidth - NARROW)/2;
-	y = Y_B;
+	height = BAT_HEIGHT;
+	retToStartPos();
 }
 
 
@@ -17,12 +16,20 @@ Bat::~Bat(void)
 
 }
 
+//задать ракетку начальные координаты по центру
+void Bat::retToStartPos()
+{
+	x = (fieldWidth - NARROW)/2;
+	y = BAT_Y;
+}
 
+//предвинуть ракетку влево
 void Bat::moveLeft()
 {
-	if (x > MIN_POS)
+	//если ракетка не вызодит за пределы поля
+	if (x-STEP > MIN_POS)
 	{
-		x -= STEP;
+		x -= STEP; //двигаем влево
 	}
 	else
 	{
@@ -30,18 +37,35 @@ void Bat::moveLeft()
 	}
 }
 
+//предвинуть ракетку вправо
 void Bat::moveRight()
 {
-	if (x < fieldWidth-width)
+	//если ракетка не вызодит за пределы поля
+	if (x+STEP < fieldWidth-width)
 	{
-		x += STEP;
+		x += STEP; //двигаем вправо
 	}
 	else
 	{
-		x = fieldWidth-width;
+		x = fieldWidth-width; //задаем крайнее правое положение
 	}
 }
 
+//проверка на столкновение и нахождение точки
+double Bat::collisionBat(int& a, int& b, int size)
+{
+	double ctg = NO_BAT_COLLISION;
+	//проверка на столкновение
+	if (y <= b + size && (x-a >= -width &&  x-a <= size))
+	{
+		b = y-size; 
+		//нахождение параметра столкновения в зависимости от точки
+		ctg = (a + size/2 - (x + width/2))/(double)size; 
+	}
+	return ctg;
+}
+
+//методы предоставляющие доступ к размерам и координатам ракетки
 int& Bat::batWidth()
 {
 	return width;
@@ -60,21 +84,4 @@ int& Bat::batX()
 int& Bat::batY()
 {
 	return y;
-}
-
-void Bat::retToStartPos()
-{
-	x = (fieldWidth - NARROW)/2;
-	y = Y_B;
-}
-
-double Bat::collisionBat(int& a, int& b, int size)
-{
-	double ctg = -2.0;
-	if (y <= b + size && (x-a > -width &&  x-a < size))
-	{
-		b = y-size; 
-		ctg = (a + size/2 - (x + width/2))/(double)size;
-	}
-	return ctg;
 }

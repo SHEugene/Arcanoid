@@ -1,0 +1,16 @@
+﻿Построение начато 17.01.2018 21:02:56.
+     1>Проект "C:\Documents and Settings\Alex\Рабочий стол\arkanoid_vFin\arkanoid_v5\arkanoid\arkanoid.vcxproj" в узле 2 (целевые объекты ClCompile).
+     1>GenerateTargetFrameworkMonikerAttribute:
+       Целевой объект "GenerateTargetFrameworkMonikerAttribute" пропускается, так как все выходные файлы актуальны по отношению к входным.
+       ClCompile:
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr:pure /nologo /W3 /WX- /O2 /Oy- /D WIN32 /D NDEBUG /D _UNICODE /D UNICODE /EHa /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Release\arkanoid.pch" /Fo"Release\\" /Fd"Release\vc100.pdb" /TP /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt LevelSelect.cpp /clr:nostdlib 
+         LevelSelect.cpp
+     1>c:\documents and settings\alex\рабочий стол\arkanoid_vfin\arkanoid_v5\arkanoid\LevelSelect.h(498): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _itoa. See online help for details.
+                 C:\Program Files\Microsoft Visual Studio 10.0\VC\include\stdlib.h(867): см. объявление "itoa"
+     1>LevelSelect.cpp(193): warning C4018: <: несоответствие типов со знаком и без знака
+         Для всех выходных данных обновления не требуется.
+     1>Построение проекта "C:\Documents and Settings\Alex\Рабочий стол\arkanoid_vFin\arkanoid_v5\arkanoid\arkanoid.vcxproj" завершено (целевые объекты ClCompile).
+
+Построение успешно завершено.
+
+Затраченное время: 00:00:01.71
